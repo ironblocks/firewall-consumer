@@ -32,10 +32,6 @@ contract MyProtectedContract is FirewallConsumerBase {
 
 To keep your system secure, you should **always** use the installed code as-is, and neither copy-paste it from online sources nor modify it yourself. The library is designed so that only the contracts and functions you use are deployed, so you don't need to worry about it needlessly increasing gas costs.
 
-## Learn More
-
-The guides in the [documentation site](https://www.ironblocks.com/) will teach about ...:
-
 ## Security
 
 This project is maintained by [Ironblocks](https://www.ironblocks.com/) with the goal of providing a secure and reliable library of smart contract components for the ecosystem. We address security through risk management in various areas such as engineering and open source best practices, scoping and API design, multi-layered review processes, and incident response preparedness.
