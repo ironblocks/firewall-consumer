@@ -1,5 +1,5 @@
 {
-  "name": "firewall-consumer",
+  "name": "@ironblocks/firewall-consumer",
   "scripts": {
     "test": "echo 'Error: no test specified' && exit 1 command"
   },
@@ -19,5 +19,21 @@
     "@openzeppelin/contracts": "^4.7.3",
     "@openzeppelin/contracts-upgradeable": "^4.8.0-rc.1",
     "@openzeppelin/hardhat-upgrades": "^1.21.0"
-  }
+  },
+  "version": "1.0.0",
+  "description": "provided interface for smart contracts to connect to Ironblocks' firewall",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ironblocks/firewall-consumer.git"
+  },
+  "keywords": [
+    "security"
+  ],
+  "author": "ironblocks LTD",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ironblocks/firewall-consumer/issues"
+  },
+  "homepage": "https://github.com/ironblocks/firewall-consumer#readme"
 }
