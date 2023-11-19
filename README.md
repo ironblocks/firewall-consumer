@@ -1,4 +1,4 @@
-# <img src="ironblocks-logo.svg" alt="Ironblocks" height="40px">
+# <img src="https://www.ironblocks.com/logo.svg" alt="Ironblocks" height="40px">
 
 
 ### Usage
