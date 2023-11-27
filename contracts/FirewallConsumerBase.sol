@@ -39,7 +39,6 @@ contract FirewallConsumerBase is IFirewallConsumer {
         IFirewall(firewall).postExecution(msg.sender, msg.data, value);
     }
 
-
     /**
      * @dev modifier that will run the preExecution and postExecution hooks of the firewall, applying each of
      * the subscribed policies. Allows passing custom data to the firewall, not necessarily msg.data.
@@ -58,6 +57,25 @@ contract FirewallConsumerBase is IFirewallConsumer {
         IFirewall(firewall).preExecution(msg.sender, data, value);
         _; 
         IFirewall(firewall).postExecution(msg.sender, data, value);
+    }
+
+    /**
+     * @dev identical to the rest of the modifiers in terms of logic, but makes it more
+     * aesthetic when all you want to pass are signatures/unique identifiers.
+     */
+    modifier firewallProtectedSig(bytes4 selector) {
+        if (firewall == address(0)) {
+            _;
+            return;
+        }
+        uint value;
+        // We do this because msg.value can only be accessed in payable functions.
+        assembly {
+            value := callvalue()
+        }
+        IFirewall(firewall).preExecution(msg.sender, abi.encodePacked(selector), value);
+        _; 
+        IFirewall(firewall).postExecution(msg.sender, abi.encodePacked(selector), value);
     }
 
     /**
