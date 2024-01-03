@@ -3,6 +3,7 @@
 // Copyright (c) Ironblocks 2023
 pragma solidity 0.8.19;
 
+import "@openzeppelin/contracts/utils/StorageSlot.sol";
 import "./interfaces/IFirewall.sol";
 import "./interfaces/IFirewallConsumer.sol";
 
@@ -17,6 +18,7 @@ import "./interfaces/IFirewallConsumer.sol";
  */
 contract FirewallConsumerBase is IFirewallConsumer {
 
+    bool private invariantsEnabled;
     address private firewall;
     address public firewallAdmin;
 
@@ -79,6 +81,27 @@ contract FirewallConsumerBase is IFirewallConsumer {
     }
 
     /**
+     * @dev modifier that will run the preExecution and postExecution hooks of the firewall invariant policy,
+     * applying the subscribed invariant policy
+     */
+    modifier invariantProtected() {
+        if (firewall == address(0)) {
+            _;
+            return;
+        }
+        uint value;
+        // We do this because msg.value can only be accessed in payable functions.
+        assembly {
+            value := callvalue()
+        }
+        bytes32[] memory storageSlots = IFirewall(firewall).preExecutionPrivateInvariants(msg.sender, msg.data, value);
+        bytes32[] memory preValues = _readStorage(storageSlots);
+        _; 
+        bytes32[] memory postValues = _readStorage(storageSlots);
+        IFirewall(firewall).postExecutionPrivateInvariants(msg.sender, msg.data, value, preValues, postValues);
+    }
+
+    /**
      * @dev modifier similar to onlyOwner, but for the firewall admin.
      */
     modifier onlyFirewallAdmin() {
@@ -112,4 +135,14 @@ contract FirewallConsumerBase is IFirewallConsumer {
         firewallAdmin = _firewallAdmin;
     }
 
+    function _readStorage(bytes32[] memory storageSlots) internal view returns (bytes32[] memory) {
+        uint256 slotsLength = storageSlots.length;
+        bytes32[] memory values = new bytes32[](slotsLength);
+
+        for (uint256 i = 0; i < slotsLength; i++) {
+            bytes32 slotValue = StorageSlot.getBytes32Slot(storageSlots[i]).value;
+            values[i] = slotValue;
+        }
+        return values;
+    }
 }

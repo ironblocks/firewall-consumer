@@ -21,8 +21,12 @@ contract MyProtectedContract is FirewallConsumerBase {
     function2() external payable firewallProtected {
 
     }
+    
+    function3() external payable firewallProtected invariantProtected {
 
-    function2() internal firewallProtectedCustom(abi.encodePacked(bytes4(<0xdata>>))) {
+    }
+
+    function4() internal firewallProtectedCustom(abi.encodePacked(bytes4(<0xdata>>))) {
 
     }
 
