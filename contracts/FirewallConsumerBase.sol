@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 // See LICENSE file for full license text.
 // Copyright (c) Ironblocks 2023
-pragma solidity 0.8.19;
+pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/utils/StorageSlot.sol";
 import "./interfaces/IFirewall.sol";
@@ -9,7 +9,7 @@ import "./interfaces/IFirewallConsumer.sol";
 
 /**
  * @title Firewall Consumer Base Contract
- * @author David Benchimol @ Ironblocks 
+ * @author David Benchimol @ Ironblocks
  * @dev This contract is a parent contract that can be used to add firewall protection to any contract.
  *
  * The contract must define a firewall contract which will manage the policies that are applied to the contract.
@@ -37,7 +37,7 @@ contract FirewallConsumerBase is IFirewallConsumer {
             value := callvalue()
         }
         IFirewall(firewall).preExecution(msg.sender, msg.data, value);
-        _; 
+        _;
         IFirewall(firewall).postExecution(msg.sender, msg.data, value);
     }
 
@@ -57,7 +57,7 @@ contract FirewallConsumerBase is IFirewallConsumer {
             value := callvalue()
         }
         IFirewall(firewall).preExecution(msg.sender, data, value);
-        _; 
+        _;
         IFirewall(firewall).postExecution(msg.sender, data, value);
     }
 
@@ -76,7 +76,7 @@ contract FirewallConsumerBase is IFirewallConsumer {
             value := callvalue()
         }
         IFirewall(firewall).preExecution(msg.sender, abi.encodePacked(selector), value);
-        _; 
+        _;
         IFirewall(firewall).postExecution(msg.sender, abi.encodePacked(selector), value);
     }
 
@@ -96,7 +96,7 @@ contract FirewallConsumerBase is IFirewallConsumer {
         }
         bytes32[] memory storageSlots = IFirewall(firewall).preExecutionPrivateInvariants(msg.sender, msg.data, value);
         bytes32[] memory preValues = _readStorage(storageSlots);
-        _; 
+        _;
         bytes32[] memory postValues = _readStorage(storageSlots);
         IFirewall(firewall).postExecutionPrivateInvariants(msg.sender, msg.data, value, preValues, postValues);
     }
