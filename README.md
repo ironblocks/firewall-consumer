@@ -1,17 +1,17 @@
 # <img src="https://www.ironblocks.com/logo.svg" alt="Ironblocks" height="40px">
 
-
 ### Usage
 
 Once installed, you can use the contracts in the library by importing them:
 
 ```solidity
-pragma solidity 0.8.19;
+pragma solidity ^0.8;
 
-import "@ironblocks/firewall-consumer/contracts/FirewallConsumerBase.sol";
+import "@ironblocks/firewall-consumer/contracts/FirewallConsumer.sol";
 
-contract MyProtectedContract is FirewallConsumerBase {
+contract MyProtectedContract is FirewallConsumer {
     constructor() {
+
     }
 
     function1() external firewallProtected {
@@ -21,7 +21,7 @@ contract MyProtectedContract is FirewallConsumerBase {
     function2() external payable firewallProtected {
 
     }
-    
+
     function3() external payable firewallProtected invariantProtected {
 
     }
