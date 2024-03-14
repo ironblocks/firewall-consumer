@@ -1,6 +1,6 @@
 {
   "name": "@ironblocks/firewall-consumer",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "provided interface for smart contracts to connect to Ironblocks' firewall",
   "main": "index.js",
   "scripts": {
