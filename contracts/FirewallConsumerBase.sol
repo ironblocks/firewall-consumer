@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 // See LICENSE file for full license text.
 // Copyright (c) Ironblocks 2023
-pragma solidity 0.8.19;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/StorageSlot.sol";
 import "./interfaces/IFirewall.sol";
@@ -18,7 +18,6 @@ import "./interfaces/IFirewallConsumer.sol";
  */
 contract FirewallConsumerBase is IFirewallConsumer {
 
-    bool private invariantsEnabled;
     address private firewall;
     address public firewallAdmin;
 
