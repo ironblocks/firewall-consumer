@@ -28,7 +28,7 @@
     "url": "git+https://github.com/ironblocks/firewall-consumer.git"
   },
   "keywords": [
-    "security"
+    "security", "web3", "ironblocks", "firewall", "blockchain", "solidity", "ethereum"
   ],
   "author": "IRONBLOCKS LTD",
   "license": "UNLICENSED",
