@@ -7,7 +7,7 @@ import "./FirewallConsumerBase.sol";
 
 /**
  * @title Firewall Consumer
- * @author David Benchimol @ Ironblocks
+ * @author David Benchimol @ Ironblocks 
  * @dev This contract is a parent contract that can be used to add firewall protection to any contract.
  *
  * The contract must initializes with the firewall contract disabled, and the deployer
