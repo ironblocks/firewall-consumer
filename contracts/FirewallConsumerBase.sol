@@ -117,7 +117,10 @@ contract FirewallConsumerBase is IFirewallConsumer, Context {
 
     /**
      * @dev Initializes a contract protected by a firewall, with a firewall address and a firewall admin.
+     *
+     * IMPORTENT: need to add _setAddressBySlot(FIREWALL_ADMIN_STORAGE_SLOT, _firewallAdmin); in the initializer for upgradable contracts
      */
+    /// @custom:oz-upgrades-unsafe-allow constructor
     constructor(
         address _firewall,
         address _firewallAdmin
